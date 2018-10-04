@@ -9,11 +9,16 @@
                 <div>
                     <p>{!! nl2br(e($micropost->content)) !!}</p>
                 </div>
-                <div>
+                <div class="d-flex flex-row">
+                    <div>
+                        @include('favorites.favorite_button', ['micropost' => $micropost])
+                    </div>
                     @if (Auth::id() == $micropost->user_id)
-                        {!! Form::open(['route' => ['microposts.destroy', $micropost->id], 'method' => 'delete']) !!}
-                            {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
-                        {!! Form::close() !!}
+                        <div class="ml-1">
+                            {!! Form::open(['route' => ['microposts.destroy', $micropost->id], 'method' => 'delete']) !!}
+                                {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
+                            {!! Form::close() !!}
+                        </div>
                     @endif
                 </div>
             </div>
